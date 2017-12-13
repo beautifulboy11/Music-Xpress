@@ -1,0 +1,8 @@
+{
+  "name": "musicXpress",
+  "app_id": "05f8dee8",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
