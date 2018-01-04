@@ -1,14 +1,173 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content no-padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <div class="card-background-page">
+    <ion-card>
+      <img [src]="headerImage" />
+      <div class="card-title">São Paulo</div>
+      <div class="card-subtitle">41 Listings</div>
+    </ion-card>
+  </div> -->
+
+  <ion-card *ngIf="create">
+    <ion-card-header>
+      Charts - Top tracks
+    </ion-card-header>
+    <ion-slides autoplay="3000" loop="true" speed="300">
+      <ion-slide *ngFor="let item of tracks.data">
+        <div>
+          <img [src]="item.album.cover_big" /> {{item.title}}
+          <p>
+            <strong>By</strong> {{item.artist.name}} at
+            <strong>Position</strong> {{item.position}}
+          </p>
+
+          <ion-row no-padding>
+            <ion-col col-4>
+              <button ion-button clear small color="danger" icon-start (click)="addFavourite(item)">
+                <ion-icon name='heart-outline'></ion-icon>
+                Favorite
+              </button>
+            </ion-col>
+            <ion-col text-center col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='musical-notes'></ion-icon>
+                Listen
+              </button>
+            </ion-col>
+            <ion-col text-right col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+                Share
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <ion-card *ngIf="create">
+    <ion-card-header>
+      Top - Albums
+    </ion-card-header>
+
+    <ion-slides>
+      <ion-slide *ngFor="let item of albums.data">
+        <div>
+          <img [src]="item.cover_big" /> {{item.title}}
+          <p>
+            <strong>By</strong> {{item.artist.name}} at
+            <strong>Position</strong> {{item.position}}
+          </p>
+          <ion-row no-padding>
+            <ion-col col-4>
+              <button ion-button clear small color="danger" icon-start (click)="addFavourite(item)">
+                <ion-icon name='heart-outline'></ion-icon>
+                Favorite
+              </button>
+            </ion-col>
+            <ion-col text-center col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='musical-notes'></ion-icon>
+                Play
+              </button>
+            </ion-col>
+            <ion-col text-right col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+                Share
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <ion-card *ngIf="create">
+    <ion-card-header>
+      Top - Artists
+    </ion-card-header>
+
+    <ion-slides>
+      <ion-slide *ngFor="let item of artists.data">
+        <div>
+          <img [src]="item.picture_big" /> {{item.name}}
+          <p>
+            <strong>Position</strong> {{item.position}}
+          </p>
+
+          <ion-row no-padding>
+            <ion-col col-4>
+              <button ion-button clear small color="danger" icon-start (click)="addFavourite(item)">
+                <ion-icon name='heart-outline'></ion-icon>
+                Favorite
+              </button>
+            </ion-col>
+            <ion-col text-center col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='musical-notes'></ion-icon>
+                Play
+              </button>
+            </ion-col>
+            <ion-col text-right col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+                Share
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <ion-card *ngIf="create">
+    <ion-card-header>
+      Top - Playlists
+    </ion-card-header>
+    <ion-slides>
+      <ion-slide *ngFor="let item of playlists.data">
+        <div>
+          <img [src]="item.picture_big" /> {{item.title}}
+          <p>
+            <strong>Playlist</strong> by {{item.user.name}}
+            <strong>Tracks</strong> {{item.nb_tracks}}
+          </p>
+          <ion-row no-padding>
+            <ion-col col-4>
+              <button ion-button clear small color="danger" icon-start (click)="addFavourite(item)">
+                <ion-icon name='heart-outline'></ion-icon>
+                Favorite
+              </button>
+            </ion-col>
+            <ion-col text-center col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='musical-notes'></ion-icon>
+                Play
+              </button>
+            </ion-col>
+            <ion-col text-right col-4>
+              <button ion-button clear small color="danger" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+                Share
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
 </ion-content>

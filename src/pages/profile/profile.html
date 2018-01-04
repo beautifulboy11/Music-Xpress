@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+        <img [src]="userProfile?.photoURL" alt="User Profile Picture" />
+        <div class="card-title">
+          <h2>{{ userProfile?.displayName }}</h2>
+        </div>
+        <div class="card-subtitle">
+          <p>{{ userProfile?.email }}</p>
+        </div>
+    </ion-item>  
+  </ion-list>
+  <ion-list>   
+      <button ion-item (click)="logout()">
+        <ion-icon name="log-out" item-start></ion-icon>
+        Logout
+      </button>    
+  </ion-list>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header no-shadow>
+  <ion-navbar>
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button (click)="startApp()" color="primary">Skip</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-bounce>
+  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slide *ngFor="let slide of slides" style="background-color:#11c3e2;">
+        <div>
+          <img [src]="slide.image" class="slide-image" />
+        </div>
+        <h3 class="slide-title" style="color:#FFFFFF;" [innerHTML]="slide.title"></h3>
+        <p style="color:#FFFFFF;"[innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+        <img src="assets/imgs/edited.png" class="slide-image" />
+        <h2 class="slide-title">Ready To Play ?</h2>
+        <button ion-button icon-end large clear (click)="startApp()">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-slide>    
+  </ion-slides>
+</ion-content>
