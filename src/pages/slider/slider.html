@@ -1,28 +1,41 @@
-<ion-header no-shadow>
-  <ion-navbar>
-    <ion-buttons end *ngIf="showSkip">
-      <button ion-button (click)="startApp()" color="primary">Skip</button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
 
-
-<ion-content no-bounce>
+<ion-content no-padding class="content-wrapper">
   <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
-    <ion-slide *ngFor="let slide of slides" style="background-color:#11c3e2;">
-        <div>
-          <img [src]="slide.image" class="slide-image" />
-        </div>
-        <h3 class="slide-title" style="color:#FFFFFF;" [innerHTML]="slide.title"></h3>
-        <p style="color:#FFFFFF;"[innerHTML]="slide.description"></p>
+
+    <ion-slide style="background-color:#41c6f1;">
+      <i class="fa fa-music" style="font-size:120px; color:#ebebeb;" aria-hidden="true"></i>
+      <h1 style="color:#ebebeb;">Play & Share</h1>
+      <p style="font-family:open-sans; font-size:14px; color:#ebebeb;">Listen to your
+        <strong>Music</strong> anywhere, <em>anytime</em></p>
     </ion-slide>
-    <ion-slide>
-        <img src="assets/imgs/edited.png" class="slide-image" />
-        <h2 class="slide-title">Ready To Play ?</h2>
-        <button ion-button icon-end large clear (click)="startApp()">
-          Continue
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button>
-      </ion-slide>    
+
+    <ion-slide style="background-color:#f86261;">
+      <i class="fa fa-eercast" style="font-size:120px; color:#ebebeb;" aria-hidden="true"></i>
+      <h1 style="color:#ebebeb;">In your own Space</h1>
+      <p style="font-family:open-sans; font-size:14px; color:#ebebeb; text-align:center;">
+        Catch-up on <em>Latest</em> and <em>trending</em> music<br />
+        <strong>Music</strong> where ever you are, </p>
+    </ion-slide>
+
+    <ion-slide style="background-color:#68c4bb;">
+      <i class="fa fa-headphones" style="font-size:120px; color:#ebebeb;" aria-hidden="true"></i>
+      <h1 style="color:#ebebeb;">Live Audio Stream</h1>
+      <p style="font-family:open-sans; font-size:14px; color:#ebebeb;">Listen to
+        <strong>live</strong> audio
+        <strong>streams</strong> on your
+        <em>device</em> !</p>
+    </ion-slide>
+
+    <ion-slide class="big-img-bg">
+      <h1 style="color:#ebebeb;">Welcome to Music Xpress</h1>                  
+      <h4 style="color:#ebebeb;">Your music Streaming Partner.</h4>
+      <p class="padding" style="font-family:open-sans; font-size:14px; color:#ebebeb; text-align:center;">
+         Now that you've seen what it's all<br />
+         about, how about we get started?
+      </p>
+      <div style="position:absolute; bottom:120px; text-align:center; z-index:1000; width:100%;">
+          <button ion-button color="primary" (click)="startApp()" round >Let's Go!</button>
+      </div>      
+    </ion-slide>
   </ion-slides>
 </ion-content>

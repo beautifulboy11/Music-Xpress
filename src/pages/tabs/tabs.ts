@@ -1,32 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SuperTabsController } from '../../ionic2-super-tabs';
+import { SuperTabs } from '../../ionic2-super-tabs/components/super-tabs';
 import firebase from 'firebase';
+import { SettingsPage } from '../pages';
 
-@IonicPage()
+@IonicPage({
+  segment: 'tabs/:type'
+})
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html',
 })
 export class TabsPage { 
-  tab1Root: any = 'HomePage';
-  tab2Root: any = 'FavouritesPage';
-  tab3Root: any = 'SettingsPage';
-  tab4Root: any = 'SearchPage';
-
-  tab1Title = " ";
-  tab2Title = " ";
-  tab3Title = " ";
-  tab4Title = " ";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.tab1Title = 'Home';
-    this.tab2Title = 'My Music';
-    this.tab3Title = 'Settings';
-    this.tab4Title = 'Search';
+  @ViewChild(SuperTabs) superTabs: SuperTabs;
+  page1: any = 'HomePage';
+  page2: any = 'FavouritesPage';
+  page3: any = SettingsPage;
+  // page4: any = 'SearchPage';
+  showIcons: boolean = true;
+  showTitles: boolean = false;
+  pageTitle: string = 'Music Xpress';
+  constructor(private navCtrl: NavController, private navParams: NavParams, private superTabsCtrl: SuperTabsController) {
+    
+    const type = this.navParams.get('type');
+    switch(type){
+      case 'icons-only':
+        this.showTitles = false;
+        break;
+      case 'titles-only':
+        this.showIcons = false;
+        break;      
+    }
+  
     firebase.auth().onAuthStateChanged(function(user){
       if(!user){
-        navCtrl.setRoot('WelcomePage');
+        this.navCtrl.setRoot('WelcomePage');
       }
     });
+  }
+
+  ngAfterViewInit(){
+    this.superTabsCtrl.enableTabsSwipe(true,"mainTabs");
+    // this.superTabsCtrl.increaseBadge('page1',10);
+    // this.superTabsCtrl.enableTabSwipe('page3',false);
+    // this.superTabsCtrl.enableTabSwipe(false);
+    // setTimeout(()=>{
+    //   this.superTabs.slideTo(4);
+    // }, 2000);
+  }
+  search(){
+    this.navCtrl.push('SearchPage');
+  }
+
+  onTabSelect(tab:{ index:number; id:string; }){
+    console.log(`Selected tab`, tab);
   }
 
   ionViewDidLoad() {

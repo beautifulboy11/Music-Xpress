@@ -1,0 +1,95 @@
+<ion-content fullscreen [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}" style="position: relative; background-size: cover; background-position: center;background-repeat: no-repeat; height: 100%;">
+  <media-player [songlist]="tracks"></media-player>
+  <div style="margin-top:-50px;">
+      <ion-grid padding >
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="heart" color="light"></ion-icon>
+          </ion-col>
+          <ion-col col-3></ion-col>
+          <ion-col col-3></ion-col>
+          <ion-col col-3>
+            <ion-icon name="trash" color="light"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>   
+    </div>  
+  <div class="audio-player-control">
+      <span class="audio-play">
+        <progress-bar [progress]="currentTrack.progress"></progress-bar>
+      </span>
+    </div>  
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 class="bringToFront">
+        <ion-icon name="volume-up" color="clear"></ion-icon>
+      </ion-col>
+      <ion-col col-8>
+        <div class="bringToFront">
+          {{currentTrack.title}}
+          <br /> by {{currentTrack.artist}}
+        </div>
+      </ion-col>
+      <ion-col col-2 class="bringToFront">
+        <ion-icon name="list" color="clear"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <div style="height:20px">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width="33">
+        <button (click)="repeat(currentTrack)" clear ion-button icon-only color="clear">
+          <ion-icon name="ios-repeat"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button (click)="previousSong(currentTrack)" color="light" clear ion-button icon-only>
+          <ion-icon name="skip-backward"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button *ngIf="!currentTrack.playing" (click)="play(currentTrack)" color="clear" clear ion-button icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button *ngIf="currentTrack.playing" (click)="pause(currentTrack)" color="clear" clear ion-button icon-only>
+          <ion-icon name="pause"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button (click)="nextSong(currentTrack)" color="clear" clear ion-button icon-only>
+          <ion-icon name="skip-forward"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button (click)="shuffle? shuffleOff() : shuffleSong()" clear ion-button icon-only [ngClass]="{'shuffleInActive': !shuffle, 'shuffleActive': shuffle }">
+          <ion-icon name="ios-shuffle-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <div style="height:20px">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+
+<!-- <ion-list no-lines>
+    <button detail-none ion-item *ngFor="let track of tracks; let i = index;" (click)="track.playing ? pause(track) : play(track)"
+      [ngClass]="{ 'alternate': i % 2, 'playing': track.playing }">
+      <ion-avatar item-left>
+        <img [src]="'https://api.adorable.io/avatars/75/' + track.artist">
+        <ion-spinner item-right *ngIf="track.playing" name="bubbles" item-left></ion-spinner>
+      </ion-avatar>
+      <h2>{{track.artist}}</h2>
+      <p>{{track.title}}</p>
+    </button>
+  </ion-list> -->

@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class Auth {
@@ -15,6 +16,7 @@ export class Auth {
     public afAuth: AngularFireAuth,
     public facebook: Facebook,
     public googlePlus: GooglePlus,
+    public loadingCtrl: LoadingController
     
   ) {
     console.log('Hello AuthProvider Provider');
@@ -44,13 +46,15 @@ export class Auth {
           .catch(error =>
             console.log('GoogleFirebase failure: ' + JSON.stringify(error))
           );
-      })
-      .catch(err => console.error('Google Error: ', err));
+      }
+      ,err => {
+        console.error('Google Error: ', err)
+      });
   }
 
   facebookLogin(): Promise<any> {
     return this.facebook
-      .login(['email'])
+      .login(['email','public_profile'])
       .then(response => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(
           response.authResponse.accessToken

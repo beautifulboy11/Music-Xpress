@@ -1,21 +1,28 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
+    <button menuToggle ion-button>
+      <ion-icon name="menu" clear></ion-icon>
+    </button>
     <ion-title>Music</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content padding>
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <ion-card>
-            <ion-icon name="heart-outline"></ion-icon>
-        </ion-card>
+        <ion-list no-line>
+          <ion-icon name="heart" color="danger"></ion-icon>
+          <ion-list *ngFor="let fav of faourites">
+            <ion-item>{{fav.title}}</ion-item>
+            <ion-item>{{fav.id}}</ion-item>
+          </ion-list>
+        </ion-list>
       </ion-col>
       <ion-col col-6>
-        <ion-card>
-            <ion-icon name="play"></ion-icon>
-        </ion-card>
+        <button ion-button clear>
+          <ion-icon name="play" (click)="play()" color="secondary"></ion-icon>
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>

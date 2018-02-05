@@ -1,6 +1,31 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" [tabTitle]="tab1Title" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" [tabTitle]="tab2Title" tabIcon="heart"></ion-tab>
-  <ion-tab [root]="tab4Root" [tabTitle]="tab4Title" tabIcon="search"></ion-tab>
-  <ion-tab [root]="tab3Root" [tabTitle]="tab3Title" tabIcon="cog"></ion-tab>
-</ion-tabs>
+<ion-header no-border no-padding>
+  <ion-navbar>
+      <button menuToggle ion-button>
+          <ion-icon name="menu" clear></ion-icon>
+        </button>
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end>
+      <button ion-button clear margin-right (click)="search()" >
+        <ion-icon name="search" color="clear" style="font-size:20px;"></ion-icon>
+      </button>
+      
+      <button ion-button clear margin-right>
+        <ion-icon name="person-add" color="clear" style="font-size:20px;"></ion-icon>
+      </button>
+    
+      <button ion-button clear margin-right>
+        <ion-icon name="more" color="clear" style="font-size:20px;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <super-tabs id="mainTabs" [config]="{ sideMenu: 'left' }" toolbarColor='clear' tabsPlacement="top" toolbarBackground="primary"
+    indicator="danger" bagdeColor="clear" (tabSelect)="onTabSelect($event)">
+    <super-tab [root]="page1" [title]="showTitles? 'Home' : ''" [icon]="showIcons? 'home' : ''" id="page1" [swipeBackEnabled]="false"></super-tab>
+    <super-tab [root]="page2" [title]="showTitles? 'Music' : ''" [icon]="showIcons? 'musical-notes' : ''" id="page2"></super-tab>
+    <!-- <super-tab [root]="page4" [title]="showTitles? 'Search' : ''" [icon]="showIcons? 'search' :''" id="page3"></super-tab> -->
+    <super-tab [root]="page3" [title]="showTitles? 'Settings' : ''" [icon]="showIcons? 'cog' : ''" id="page4"></super-tab>
+  </super-tabs>
+</ion-content>

@@ -1,91 +1,84 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController,App } from 'ionic-angular';
 import { Api } from '../../providers/providers';
-import { Song } from '../../models/song';
-import { Songs } from '../../providers/providers';
+
 
 @IonicPage()
 @Component({
   selector: 'page-search',
-  templateUrl: 'search.html',
+  templateUrl: 'search.html'
 })
 export class SearchPage {
 
   currentItems: any = {};
   artist = [];
-  album = [];
+  albums = [];
+  tracks = [];
   create: boolean = false;
   loading: any;
   results = [];
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     private api: Api,
-    private loadingCtrl: LoadingController,
-    public alertCtrl: AlertController
-  ) {}
+    public alertCtrl: AlertController,
+    private menu: MenuController,
+    private appCtrl: App
+  ) { }
 
   getItems(ev) {
     let val = ev.target.value;
     if (!val || !val.trim()) {
-      this.currentItems = [];
+      this.currentItems = {};
       return;
     }
+
     this.api.get('search?q=' + val)
-      .subscribe((res) => { 
-        this.currentItems = {};            
-        this.currentItems = this.filterResult(res, val);
-          this.currentItems.forEach(element => {
-            this.album.push(element["album"]);
-          });
-          
-          this.currentItems.forEach(element => {
-            this.artist.push(element["artist"]);
-          });
-          
-          this.create = true;
-          this.loading.dismiss();
-                
-      }, error => {
-      this.loading.dismiss().then(() => {
-          let alert = this.alertCtrl.create({
-            message: error.message,
-            buttons: [
-              {
-                text: "Ok",
-                role: 'cancel'
-              }]
-          });
-          alert.present();
-        });
-      });   
-    this.loading = this.loadingCtrl.create({
-      dismissOnPageChange: true,
-    });
-    this.loading.present();
-  }
-
-  query(res: ArrayBuffer, params?: any): any {
-    this.results = res["data"];  
-    return this.results.filter((item) => {
-      for (let key in params) {
-        let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
-          return item;
-        } else if (field == params[key]) {
-          return item;
+      .subscribe((res) => {
+        this.currentItems = {};
+        let Items = res["data"];
+        let alb = [];
+        let tra = [];
+        let art = [];
+        for (let index = 0; index < Items.length; index++) {
+          let item = Items[index];
+          alb.push(item["album"]);
+          art.push(item["artist"]);
+          tra.push(item);
         }
-      }
-      return null;
-    });
+        this.albums = this.filterUnique(alb);
+        this.artist = this.filterUnique(art);
+        this.tracks = this.filterUnique(tra);
+        
+        console.info(this.albums);
+        this.create = true;
+      }, error => {
+        let alert = this.alertCtrl.create({
+          message: error.message,
+          buttons: [
+            {
+              text: "Ok",
+              role: 'cancel'
+            }]
+        });
+        alert.present();
+      });
   }
 
-  filterResult(res: ArrayBuffer, val: string): Array<any> {
-    return this.query(res, { title: val, name: val, album: val });      
+  filterUnique(Arr): any {
+    var unique = []; var temp =[];
+    for (let i = 0; i < Arr.length; i++) {
+      let current = Arr[i];
+      if (temp.indexOf(current["id"]) < 0)
+        unique.push(current);
+        temp.push(current["id"]);
+    }
+    return unique;
   }
 
-  openItem(item: Song) {
-    alert("Selected Item");
-    this.navCtrl.push('ItemDetailPage', {
+  openItem(item: any) {
+   
+    this.appCtrl.getRootNav().push('AudioPlayerPage', {
       item: item
     });
   }
@@ -93,6 +86,15 @@ export class SearchPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
+  // ionViewDidEnter() {
+  //   // the root left menu should be disabled on the tutorial page
+  //   this.menu.enable(false);
+  // }
+  // ionViewWillLeave() {
+  //   // enable the root left menu when leaving the tutorial page
+  //   this.menu.enable(true);
+  // }
+
 }
 
 

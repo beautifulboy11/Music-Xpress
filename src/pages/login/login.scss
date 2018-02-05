@@ -1,24 +1,91 @@
 page-login {
-    h2{
-        text-align: center;
-        margin: 10px;
-    }
-    form{
-        margin-bottom: 20px;
-        button{
-            margin-top:20px !important;
-        }
-        p{
-            font-style: italic;
-            color: red;
-        }
-    }
-    .invalid{
-        border-bottom: 1px solid #FF6153;
-    }
-    .error-message .item-inner{
-        border-bottom: 0 !important;
-    }
-    
+  // background-color: map-get($colors, vibrant);
+  ion-input {
+    color: beige;
+  }
+  .bg-img {
+    background: url('../assets/imgs/bg.jpg');
+    background-repeat: no-repeat; // background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    z-index: 1000;
+    position: relative;
+  }
+  .no-scroll .scroll-content {
+    overflow: auto;
+  }
+  ion-content {
+   align-content: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+  }
+  ion-card.card{
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+  }
+  a,p,
+  ion-card-header.card-header{
+    color: #fff !important;
+  }
+  .list >.item-block:first-child{
+    border: medium none;
+  }
+  // .list > .item-block .item-inner{
+  //   border: medium none;
+  //   }
 
+  .item {
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border: medium none;
+    .text-input,{
+      color: #fff;
+    }
+
+    input::-moz-placeholder
+    {
+      color: #fff !important;
+    }
+
+    input:-moz-placeholder
+    {
+      color: #fff !important;
+    }
+
+    *::-webkit-input-placeholder{
+      color: #fff !important;
+    }
+
+    *:-ms-input-placeholder{
+      color: #fff !important;
+    }
+
+    *:-moz-placeholder{
+      color: #fff !important;
+    }
+
+  }
+
+  .icon{
+     padding-right: 10px;
+  }
+  .fb{
+    padding-right: 10px;
+ }
+  
+  .bottom{
+    position: absolute;
+    bottom: 0;
+  }
+  // .invalid {
+  //   border-bottom: 2px solid red;
+  // }
+  .error-message .item-inner {
+    border-bottom: 0 !important;
+  }
 }
+

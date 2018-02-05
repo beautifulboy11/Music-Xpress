@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AboutPage } from '../pages';
 import { Settings } from '../../providers/providers';
 
 @IonicPage()
@@ -13,7 +13,7 @@ export class SettingsPage {
   user: any;
   // Our local settings object
   options: any;
-
+  pageTitle: string = 'Settings';
   settingsReady: boolean = false;
 
   private settingsform: FormGroup;
@@ -25,8 +25,7 @@ export class SettingsPage {
 
   page: string = 'main';
   pageTitleKey: string = 'SETTINGS_TITLE';
-  pageTitle: string;
-
+ 
   subSettings: any = SettingsPage;
 
   constructor(
@@ -77,7 +76,6 @@ export class SettingsPage {
     this.page = this.navParams.get('page') || this.page;
     this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
 
-    //this.translate.get(this.pageTitleKey).subscribe((res) => {
     this.pageTitle = 'Settings';
     
 
@@ -88,7 +86,9 @@ export class SettingsPage {
       this._buildForm();
     });
   }
-
+  showAbout(){
+    this.navCtrl.push(AboutPage);
+  }
   ngOnChanges() {
     console.log('Ng All Changes');
   }

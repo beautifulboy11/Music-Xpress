@@ -1,20 +1,35 @@
-page-home {  
+page-home {
+  .body{
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;   
+    text-rendering: optimizeLegibility;
+  }
+  .toast-message {
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 1.5rem;
+    -webkit-box-flex: 1
+  }
+  ion-spinner * {
+    width: 28px;
+    height: 28px;
+    stroke: #444;
+    fill: #222;
+  }
   .card-background-page {
-
     ion-card {
       position: relative;
       text-align: center;
+      height: 50%;
     }
-  
     .card-title {
       position: absolute;
       top: 36%;
-      font-size: 2.0em;
+      font-size: 1.5em;
       width: 100%;
       font-weight: bold;
-      color: #fff;
+      color: rgb(251, 255, 252);
     }
-  
     .card-subtitle {
       font-size: 1.0em;
       position: absolute;
@@ -22,14 +37,12 @@ page-home {
       width: 100%;
       color: #fff;
     }
-  
   }
-  
   .card-header-md {
-    color: #488aff;
-    font-size: 2.6rem;
-    font-weight: 500;
-    border-bottom: #c3c3be 2px solid;
+    //color: #488aff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    //border-bottom: #c3c3be 2px solid;
   }
   ion-card {
     display: block;
@@ -39,12 +52,11 @@ page-home {
     display: block;
     width: 100%;
   }
-  
   ion-card-header {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  } 
+  }
 }
 

@@ -23,21 +23,32 @@ $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubu
 
 // Named Color Variables
 // --------------------------------------------------
-
+$color-grey: grey;
 $colors: (
-  primary:    #488aff,
+  primary:    #4a8bfc,//#005694,//#026d62,// #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
+  pnk:        purple,
+  army:       #556b2f,
   light:      #f4f4f4,
+  clear:      #ffffff,
   dark:       #222,
-  energized:  #ffc527,
+  energized:  #ffa96b,
   royal:      #7e60ff,
   subtle:     #444444,
   vibrant:    rebeccapurple,
-  bright:     #ffc125,
-  night:      #000000
+  bright:     #e27b45,
+  seethrough: rgba(rgba(255, 255, 255, 0.178), 0.1),
+  night:      #000000,
+  lytgray:    rgba(gray, 0.452), 
+  transp:     rgba(black, 0.9),
+  darkblu: #1d4676,
+  facebook: #3b5998,
 );
-
+$loading-md-spinner-color	: color($colors, primary);
+$loading-md-background: color($colors, clear);
+$loading-md-box-shadow-color:	rgba(0, 0, 0, .4);
+$loading-md-box-shadow: 0 16px 20px ;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -48,7 +59,7 @@ $checkbox-ios-icon-checkmark-color:   #fff;
 // Used to show the status bar for component demos
 $cordova-ios-statusbar-padding:       20px;
 
-
+$ion-content-font: $font-family;
 // App Material Design Variables
 // --------------------------------------------------
 
@@ -64,15 +75,10 @@ $checkbox-md-icon-checkmark-color:        #fff;
 // Used to show the status bar for component demos
 $cordova-md-statusbar-padding:           29px;
 
-
 // App Windows Variables
 // --------------------------------------------------
-// Windows only Sass variables can go here
 
-// Used to show the status bar for component demos
 $cordova-wp-statusbar-padding:           31px;
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -87,8 +93,7 @@ $cordova-wp-statusbar-padding:           31px;
 @import "roboto";
 @import "noto-sans";
 // Global Styles
-// --------------------------------------------------
-// Styles that apply to the entire app
+
 
 body, body:hover, body a, body button, body media-switch {
   cursor: url('http://ionicframework.com/img/finger.png') 8 8, auto;
@@ -125,7 +130,6 @@ scroll-content {
 
 // App iOS Styles
 // --------------------------------------------------
-// iOS only styles can go here
 
 .ios {
 
@@ -154,7 +158,6 @@ scroll-content {
 
 // App Material Design Styles
 // --------------------------------------------------
-// Material Design only styles can go here
 
 .md {
 
@@ -192,7 +195,6 @@ scroll-content {
 
 // App Windows Styles
 // --------------------------------------------------
-// Windows only styles can go here
 
 .wp {
 

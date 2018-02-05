@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { Platform } from 'ionic-angular/platform/platform';
 
 export interface Slide{
@@ -17,11 +17,11 @@ export class SliderPage {
   slides: Slide [];
   showSkip = true;
   dir: string = 'ltr';
-  constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
     this.dir = platform.dir();
     this.slides =[
       {
-        title: 'Xpress Music',
+        title: '',
         description: '',
         image: 'assets/imgs/welcomeLogo.png',
       },
@@ -42,20 +42,20 @@ export class SliderPage {
   }
 
   startApp() {
-    this.navCtrl.setRoot('WelcomePage', {}, {
+    this.navCtrl.setRoot('LoginPage', {}, {
       animate: true,
       direction: 'forward'
     });
   }
 
-  // ionViewDidEnter() {
-  //   // the root left menu should be disabled on the tutorial page
-  //   this.menu.enable(false);
-  // }
+  ionViewDidEnter() {
+    // the root left menu should be disabled on the tutorial page
+    this.menu.enable(false);
+  }
 
-  // ionViewWillLeave() {
-  //   // enable the root left menu when leaving the tutorial page
-  //   this.menu.enable(true);
-  // }
+  ionViewWillLeave() {
+    // enable the root left menu when leaving the tutorial page
+    this.menu.enable(true);
+  }
 
 }

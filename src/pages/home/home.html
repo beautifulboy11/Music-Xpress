@@ -1,62 +1,63 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <button menuToggle ion-button>
+      <ion-icon name="menu" clear></ion-icon>
+    </button>
+    <ion-title text-center>Home</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content no-padding>
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
 
   <!-- <div class="card-background-page">
-    <ion-card>
-      <img [src]="headerImage" />
-      <div class="card-title">São Paulo</div>
-      <div class="card-subtitle">41 Listings</div>
-    </ion-card>
+    <img [src]="headerImage" height="100px" width="100%" />
+    <div class="card-title">Music Xpress</div>
+    <div class="card-subtitle">41 Listings</div>
   </div> -->
 
-  <ion-card *ngIf="create">
-    <ion-card-header>
-      Charts - Top tracks
-    </ion-card-header>
-    <ion-slides autoplay="3000" loop="true" speed="300">
-      <ion-slide *ngFor="let item of tracks.data">
-        <div>
-          <img [src]="item.album.cover_big" /> {{item.title}}
-          <p>
-            <strong>By</strong> {{item.artist.name}} at
-            <strong>Position</strong> {{item.position}}
-          </p>
 
-          <ion-row no-padding>
-            <ion-col col-4>
-              <button ion-button clear small color="danger" icon-start (click)="addFavourite(item)">
-                <ion-icon name='heart-outline'></ion-icon>
-                Favorite
-              </button>
-            </ion-col>
-            <ion-col text-center col-4>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='musical-notes'></ion-icon>
-                Listen
-              </button>
-            </ion-col>
-            <ion-col text-right col-4>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='share-alt'></ion-icon>
-                Share
-              </button>
-            </ion-col>
-          </ion-row>
-        </div>
+  <ion-card *ngIf="create">
+    <ion-card-title>
+      Charts - Top tracks
+    </ion-card-title>
+    <ion-slides loop="true" slidesPerView="1" direction="horizontal">
+      <ion-slide *ngFor="let track of tracks.data">
+        <ion-card>
+          <!-- <ion-row no-padding>
+                      <ion-col col-4>
+                        <button ion-button clear small color="danger" icon-start (click)="addFavourite($even, track)">
+                          <ion-icon name='heart-outline'></ion-icon>
+                          Favorite
+                        </button>
+                      </ion-col>
+                      <ion-col text-center col-4>
+                        <button ion-button clear small color="danger" icon-start (click)="play(track)">
+                          <ion-icon name='musical-notes'></ion-icon>
+                          Listen
+                        </button>
+                      </ion-col>
+                      <ion-col text-right col-4>
+                        <button ion-button clear small color="danger" icon-start (click)="share(track)">
+                          <ion-icon name='share'></ion-icon>
+                          Share
+                        </button>
+                      </ion-col>
+                    </ion-row> -->
+        </ion-card>
+        <a (click)="itemDetail(track)">
+          <img [src]="track.album.cover_big" /> {{track.title}}
+          <p>
+            <strong>By</strong> {{track.artist.name}} at
+            <strong>Position</strong> {{track.position}}
+          </p>
+        </a>
       </ion-slide>
     </ion-slides>
   </ion-card>
+
 
   <ion-card *ngIf="create">
     <ion-card-header>
@@ -79,14 +80,14 @@
               </button>
             </ion-col>
             <ion-col text-center col-4>
-              <button ion-button clear small color="danger" icon-start>
+              <button ion-button clear small color="danger" icon-start (click)="play(item)">
                 <ion-icon name='musical-notes'></ion-icon>
                 Play
               </button>
             </ion-col>
             <ion-col text-right col-4>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='share-alt'></ion-icon>
+              <button ion-button clear small color="danger" icon-start (click)="share(item)">
+                <ion-icon name='share'></ion-icon>
                 Share
               </button>
             </ion-col>
@@ -117,14 +118,14 @@
               </button>
             </ion-col>
             <ion-col text-center col-4>
-              <button ion-button clear small color="danger" icon-start>
+              <button ion-button clear small color="danger" icon-start (click)="play(item)">
                 <ion-icon name='musical-notes'></ion-icon>
                 Play
               </button>
             </ion-col>
             <ion-col text-right col-4>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='share-alt'></ion-icon>
+              <button ion-button clear small color="danger" icon-start (click)="share(item)">
+                <ion-icon name='share'></ion-icon>
                 Share
               </button>
             </ion-col>
@@ -154,14 +155,14 @@
               </button>
             </ion-col>
             <ion-col text-center col-4>
-              <button ion-button clear small color="danger" icon-start>
+              <button ion-button clear small color="danger" icon-start (click)="play(item)">
                 <ion-icon name='musical-notes'></ion-icon>
                 Play
               </button>
             </ion-col>
             <ion-col text-right col-4>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='share-alt'></ion-icon>
+              <button ion-button clear small color="danger" icon-start (click)="share(item)">
+                <ion-icon name='share'></ion-icon>
                 Share
               </button>
             </ion-col>

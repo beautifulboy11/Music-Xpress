@@ -1,23 +1,18 @@
-page-slider {
-  .slide-image {
-    max-height: 40%;
-    max-width: 60%;
-    margin: 36px 0;
+page-slider {  
+  ion-slide{
+    padding-top: 20%;
   }
-  .slide-zoom {
+ 
+  .big-img-bg {
+    position: relative;
+    background: url('../assets/imgs/chair_ballon.jpg') no-repeat transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100%;
+    z-index: 100;      
   }
-  .slide-title {
-    margin-top: 2.8rem;
-  }
-  .slide-style {
-    display: block;
-    width: 50%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .toolbar-background {
+  .toolbar {
     background: transparent;
     border-color: transparent;
   }
@@ -32,20 +27,20 @@ page-slider {
     max-width: 60%;
     margin: 36px 0;
   }
-  b {
-    font-weight: 500;
-  }
-  #heading {
-    color: #fff;
-  }
-  p {
-    padding: 0 40px;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: rgb(255, 255, 255);
-    b {
-      color: #ffffff;
-    }
-  }
+  // b {
+  //   font-weight: 500;
+  // }
+  // h1,h2,h3,h4 {
+  //   color: #ebebeb;
+  // }
+  // p {
+  //   padding: 0 40px;
+  //   // font-size: 1.2rem;
+  //   line-height: 1.5;
+  //   color:#ebebeb;
+  //   b {
+  //     color: #ebebeb;
+  //   }
+  // }
 }
 

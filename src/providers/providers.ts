@@ -1,10 +1,4 @@
-import { Api } from './api/api';
-import { Songs } from './songs/songs';
-import { Settings } from './settings/settings';
-import { Auth } from './auth/auth';
-export{
-    Api,
-    Songs,
-    Settings,    
-    Auth
-}
+export * from './api/api';
+export * from './songs/songs';
+export * from './settings/settings';
+export * from './auth/auth';

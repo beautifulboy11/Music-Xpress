@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-header no-border>
+        <ion-toolbar>
+            <button menuToggle ion-button>
+                <ion-icon name="close" clear></ion-icon>
+            </button>
+            <ion-title>Music Xpress</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <ion-list-header>Navigation</ion-list-header>
+            <button menuClose ion-item (click)="goToSettings()">
+                <ion-icon name="cog" icon-start color="primary"></ion-icon>
+                Settings
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

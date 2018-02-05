@@ -1,50 +1,74 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  
-  <form [formGroup]="loginForm" (submit)="Login()" novalidate>
-    <ion-list>
-
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)"  [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>        
-      </ion-item>
-      <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && (emailChanged || submitAttempt)">
-        <p>Please enter a valid email.</p>
-      </ion-item>     
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input #password formControlName="password" type="password" (change)="elementChanged(password)"  [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
-      </ion-item>
-      <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)">
-          <p>Password must be more than 8 characters.</p>
-        </ion-item>
-      <div padding>
-        <button ion-button color="primary" block>Sign in</button>
-      </div>
-    </ion-list>
-  </form>
-
-  <button ion-button block clear (click)="Signup()">
-    <small>Don't have an account? Register Now</small>
-  </button>
-  <button ion-button block clear (click)="ResetPassword()">
-    <small>Forgot password? </small>
-  </button>
-
-  <div class="spacer" style="height: 20px;"></div>
-
-  <button ion-button block color="danger" (click)="googleLogin()">
-    <ion-icon name="logo-googleplus"></ion-icon>
-    &nbsp;&nbsp;Login with Google
-  </button>
-  <button ion-button block color="possitive" (click)="facebookLogin()">
-    <ion-icon name="logo-facebook"></ion-icon>
-    &nbsp;&nbsp;Login with Facebook
-  </button>
+<ion-content no-padding class="no-scroll bg-img">
+  <ion-card>
+    <ion-card-header text-center>
+        <i class="fa fa-music" aria-hidden="true" style="color:#ebebeb; font-size:50px" ></i>
+        <h1 style="color:#ebebeb; font-size:3.0rem; font-weight:bold;">Music Xpress</h1>
+        <p style="text-align:center; color:#ebebeb;"><em>Your streaming partner</em></p>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="loginForm" (submit)="Login()" clear novalidate>
+        <ion-list no-line>    
+          <ion-item>
+            <ion-label style="color:#fff;" floating>Username / Email</ion-label>
+            <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)" [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+          </ion-item>
+    
+          <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && (emailChanged || submitAttempt)">
+            <p style="color:red;">Please enter a valid email.</p>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label style="color:#fff;" floating>Password</ion-label>
+            <ion-input #password formControlName="password" type="password" (change)="elementChanged(password)" [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
+          </ion-item>
+    
+          <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)">
+            <p style="color:red;">Password must be more than 8 characters.</p>
+          </ion-item>
+          <div style="margin-top:10px;"></div>
+    
+          <div padding>
+            <button ion-button outline color="light" block round>Log in</button>
+          </div>    
+        </ion-list>
+      </form>  
+      <ion-col col-10>        
+          <button ion-button clear color="clear" (click)="ResetPassword()" text-center>
+            Forgot Your password?
+          </button>
+        </ion-col>
+    </ion-card-content>
+  </ion-card>     
+  <ion-grid >
+    <ion-row >     
+      <ion-col col-1></ion-col>
+      
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+        <ion-list>
+          <button color="clear" ion-button (click)="Signup()" outline round block>
+            Sign Up
+          </button>
+        </ion-list>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-5>
+        <button ion-button color="danger" (click)="googleLogin()" round block >
+          <ion-icon name="logo-googleplus"></ion-icon> Google Plus
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button color="facebook" (click)="facebookLogin()" round block >
+          <i class="fa fa-facebook fb" aria-hidden="true"></i> facebook
+        </button>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-

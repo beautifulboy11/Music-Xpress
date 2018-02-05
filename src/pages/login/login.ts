@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Auth } from '../../providers/providers';
 import { Storage } from '@ionic/storage';
+import { TabsPage } from '../pages';
 
 @IonicPage()
 @Component({
@@ -16,8 +17,7 @@ export class LoginPage {
   submitAttempt: boolean = false;
   loading: any;
 
-  FB_APP_ID: number = 388541891583070;
-  private loginErrorString: string;
+  
   userProfile: any = null;
 
   constructor(
@@ -45,21 +45,29 @@ export class LoginPage {
   }
 
   googleLogin(): any {
-    this.auth.googleLogin();
+    let loading = this.loadingCtrl.create({
+      content: 'Loading...',
+      dismissOnPageChange: true
+    });
+    loading.present().then(() => {
+      this.auth.googleLogin().then(()=> {
+        loading.dismiss();
+      })
+      ,err => {
+        console.error(err);
+        this.presentAlert("Google Login Error", err);
+      };
+      
+    });
   }
 
   facebookLogin(): void {
     this.auth.facebookLogin()
-      .then((res) => {
-        this.loginErrorString = res["errorMessage"];
-        console.log(" favebopk " + this.loginErrorString);
-        if (res.indexOf('errorMessage') > -1) {
-          this.presentAlert("Facebook Login", res)
-        }
-      })
-      .catch((error) => {
-        this.presentAlert("Facebook Login", error);
-      });
+    .then((res) => {     
+      this.navCtrl.setRoot(TabsPage);
+    }), err => {
+      this.presentAlert("Facebook Login Error", err);
+    };    
   }
 
   SaveToLocalStorage(user) {
@@ -74,7 +82,7 @@ export class LoginPage {
     })
       .then(function () {
         this.presentAlert("Save User Sucess: ", "Success");
-        nav.push('TabsPage');
+        nav.push(TabsPage);
       },
       function (error) {
         this.presentAlert("Save User Error: ", error);
@@ -118,28 +126,7 @@ export class LoginPage {
       this.loading.present();
     }
   }
-  presentConfirm() {
-    let alert = this.alertCtrl.create({
-      title: 'Confirm purchase',
-      message: 'Do you want to buy this book?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Buy',
-          handler: () => {
-            console.log('Buy clicked');
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
+ 
   presentAlert(Title, Message) {
     let alert = this.alertCtrl.create({
       title: Title,
@@ -156,32 +143,6 @@ export class LoginPage {
     });
     alert.present();
   }
-  showPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Password Reset',
-      message: "Enter email address",
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'Email'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Submit',
-          handler: data => {
-            console.log('Saved clicked');
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
+  
 }
 
