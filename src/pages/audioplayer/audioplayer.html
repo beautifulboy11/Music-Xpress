@@ -18,7 +18,18 @@
       <span class="audio-play">
         <progress-bar [progress]="currentTrack.progress"></progress-bar>
       </span>
-    </div>  
+    </div> 
+    <ion-list no-lines>
+      <button detail-none ion-item *ngFor="let track of tracks; let i = index;" (click)="track.playing ? pause(track) : play(track)"
+        [ngClass]="{ 'alternate': i % 2, 'playing': track.playing }">
+        <ion-avatar item-left>
+          <img [src]="'https://api.adorable.io/avatars/75/' + track.artist">
+          <ion-spinner item-right *ngIf="track.playing" name="bubbles" item-left></ion-spinner>
+        </ion-avatar>
+        <h2>{{track.artist}}</h2>
+        <p>{{track.title}}</p>
+      </button>
+    </ion-list> 
 </ion-content>
 <ion-footer>
   <ion-grid>
@@ -82,14 +93,3 @@
   </ion-grid>
 </ion-footer>
 
-<!-- <ion-list no-lines>
-    <button detail-none ion-item *ngFor="let track of tracks; let i = index;" (click)="track.playing ? pause(track) : play(track)"
-      [ngClass]="{ 'alternate': i % 2, 'playing': track.playing }">
-      <ion-avatar item-left>
-        <img [src]="'https://api.adorable.io/avatars/75/' + track.artist">
-        <ion-spinner item-right *ngIf="track.playing" name="bubbles" item-left></ion-spinner>
-      </ion-avatar>
-      <h2>{{track.artist}}</h2>
-      <p>{{track.title}}</p>
-    </button>
-  </ion-list> -->

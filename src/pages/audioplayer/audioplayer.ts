@@ -34,8 +34,8 @@ export class AudioPlayerPage {
     console.info(this.params);      
         
     this.tracks = [   
-      {source: 'http://soundbible.com/grab.php?id=2196&type=mp3', title: 'Sample Song', artist: 'Sample Tune', playing: false, progress:0 },
-      {source:'../../assets/AfunikaTebwalwaBomfya.mp3', title: 'TebwalwaBomfya', artist: 'Afunika', playing: false, progress: 0 },
+      {source: 'http://indimba.com/download.php?dfdc1fdf0be9fb61ddb7bedbbfdb153d=62', title: 'Sample Song', artist: 'Sample Tune', playing: false, progress:0 },
+      {source:'http://indimba.com/download.php?dfdc1fdf0be9fb61ddb7bedbbfdb153d=2838', title: 'TebwalwaBomfya', artist: 'Afunika', playing: false, progress: 0 },
       {source:'../../assets/Afunika_Dj_Wandetelela.mp3', title: 'Dj Wandetelela', artist: 'Afunika', playing: false, progress: 0 },
       {source:'../../assets/No Title - DRiMZ Mr Music.mp4.mp3', title: 'No Title', artist: 'DRiMZ Mr Music', playing: false, progress: 0 },     
     ];
@@ -70,13 +70,12 @@ export class AudioPlayerPage {
   play (track) {    
     for (let checkTrack of this.tracks) {
       if (checkTrack.playing) {
-        this.player.pause(checkTrack);
+        this.pause(checkTrack);
       }
     }
-   
-    this.player.src = this.currentTrack.source;
-    track.playing = true;
-    //this.source = track.source;
+     
+    track.playing = true;    
+    this.player.src = track.source;
     this.player.play();
     this.currentTrack = track;
 
@@ -87,21 +86,24 @@ export class AudioPlayerPage {
     }, 1000);
   }
 
+  playEnded(){}
+
   pause = function (track) {
     track.playing = false;
     clearInterval(this.progressInterval);
     this.player.pause();
   }
 
-  previousSong () {    
-    let index = this.tracks.indexOf(this.currentTrack);
-    index > 0 ? index-- : index = this.tracks.length - 1;
-
-    this.play(this.tracks[index]);
-  }
   nextSong = function () {   
     let index = this.tracks.indexOf(this.currentTrack);
     index >= this.tracks.length - 1 ? index = 0 : index++;
+
+    this.play(this.tracks[index]);
+  }
+
+  previousSong () {    
+    let index = this.tracks.indexOf(this.currentTrack);
+    index > 0 ? index-- : index = this.tracks.length - 1;
 
     this.play(this.tracks[index]);
   }

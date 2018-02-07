@@ -13,7 +13,9 @@ export class MediaPlayerComponent implements OnInit {
   @Input('backgroundImage') backgroundImage: string;
   player: any;
  
-  constructor() {}
+  constructor() {
+    console.log("Can play through "); 
+  }
 
 
   ngOnInit(){
@@ -21,13 +23,11 @@ export class MediaPlayerComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.audio.nativeElement.oncanplaythrough = () =>{
-      alert("Can play through ");      
+    this.audio.nativeElement.oncanplaythrough = () =>{          
       let player = this.audio.nativeElement;
-      player.src = this.songlist[0].source;
-      player.play();
+      // player.src = this.songlist[0].source;
+      // player.play();
     };
   }
-  
-  playEnded(){}
+    
 }

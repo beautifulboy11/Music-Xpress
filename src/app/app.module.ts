@@ -28,6 +28,7 @@ import { DurationFormatter } from '../common/pipes/duration-formatter';
 import { GoogleAnalyticsTracker } from '../common/tracking/google-analytics-tracker.provider';
 
 import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioProviderFactory } from 'ionic-audio';
+import { StorageProvider } from '../providers/storage/storage';
 export function myCustomAudioProviderFactory() {
   return (window.hasOwnProperty('cordova')) ? new CordovaMediaProvider() : new WebAudioProvider();
 }
@@ -103,7 +104,8 @@ export function provideSettings(storage: Storage) {
     StreamingMedia ,   
     GoogleAnalyticsTracker,
     AndroidFullScreen,
-    AppVersion  
+    AppVersion,
+    StorageProvider  
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
